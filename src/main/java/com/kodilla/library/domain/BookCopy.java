@@ -23,8 +23,15 @@ public class BookCopy {
     @ManyToOne
     @JoinColumn(name = "BOOK_ID")
     private Book book;
+    @OneToOne
+    @JoinColumn(name = "LENT_ID")
+    private BookLent lent;
 
     public BookCopy(CopyStatus status) {
+        this.status = status;
+    }
+
+    public void setStatus(CopyStatus status) {
         this.status = status;
     }
 }

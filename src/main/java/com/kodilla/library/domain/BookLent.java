@@ -23,7 +23,7 @@ public class BookLent {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "COPY_ID")
     private BookCopy copy;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "READER_ID")
     private Reader reader;
     private LocalDate lentBegin;

@@ -6,12 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
+
 @Entity(name = "readers")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,6 +27,14 @@ public class Reader {
     private String lastname;
     @Column(name = "REGISTER")
     private Date created;
+    @OneToMany(
+            targetEntity = BookLent.class,
+            mappedBy = "reader",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
+    private List<BookLent> lents;
+
 
     public Reader(String name, String lastname, Date created) {
         this.name = name;
