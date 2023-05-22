@@ -18,20 +18,25 @@ public class BookCopy {
     @Column(name = "ID", unique = true)
     private int id;
 
-    @Column(name = "STAUS")
+    @Column(name = "STATUS")
     private CopyStatus status;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "BOOK_ID")
     private Book book;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "LENT_ID")
     private BookLent lent;
 
-    public BookCopy(CopyStatus status) {
+    public BookCopy(CopyStatus status, Book book) {
         this.status = status;
+        this.book = book;
     }
 
     public void setStatus(CopyStatus status) {
         this.status = status;
+    }
+
+    public void setLent(BookLent lent) {
+        this.lent = lent;
     }
 }

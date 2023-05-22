@@ -3,14 +3,13 @@ package com.kodilla.library.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.Date;
 
-@Entity(name = "lends")
+
+@Entity(name = "lents")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -23,7 +22,7 @@ public class BookLent {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "COPY_ID")
     private BookCopy copy;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "READER_ID")
     private Reader reader;
     private LocalDate lentBegin;

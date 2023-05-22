@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -30,7 +31,7 @@ public class Book {
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
-    private List<BookCopy> copies;
+    private List<BookCopy> copies = new ArrayList<>();
 
     public Book(String title, String author, int publishYear) {
         this.title = title;

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @Repository
@@ -18,4 +19,6 @@ public interface BookLentRepository extends CrudRepository<BookLent, Integer>{
     BookLent save(BookLent lent);
 
     void deleteById(int id);
+
+    Optional<BookLent> findById(int id);
 }

@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface ReaderRepository extends CrudRepository<Reader, Integer> {
     @Override
     List<Reader> findAll();
-    Optional<Reader> findByLastname();
+    Optional<Reader> findByLastname(String lastname);
     @Override
     Reader save(Reader reader);
 

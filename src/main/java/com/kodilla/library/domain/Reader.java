@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,10 +34,10 @@ public class Reader {
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
-    private List<BookLent> lents;
+    private List<BookLent> lents = new ArrayList<>();
 
 
-    public Reader(String name, String lastname, Date created) {
+    public Reader(String name, String lastname) {
         this.name = name;
         this.lastname = lastname;
         this.created = new Date();
