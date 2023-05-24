@@ -29,9 +29,16 @@ public class Book {
             targetEntity = BookCopy.class,
             mappedBy = "book",
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
+            fetch = FetchType.LAZY
     )
     private List<BookCopy> copies = new ArrayList<>();
+
+    public Book(int id, String title, String author, int publishYear) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.publishYear = publishYear;
+    }
 
     public Book(String title, String author, int publishYear) {
         this.title = title;

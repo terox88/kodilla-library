@@ -6,15 +6,12 @@ import lombok.Getter;
 import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
-public class BookLentDto {
+public class BookLentDtoOut {
     private int id;
     private int bookCopyId;
     private int readerId;
     private LocalDate lentBegin;
     private LocalDate lentEnd;
 
-    public BookLentDto(int bookCopyId, int readerId) {
-        this.bookCopyId = bookCopyId;
-        this.readerId = readerId;
-    }
+
 }

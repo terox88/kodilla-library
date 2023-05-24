@@ -32,7 +32,7 @@ public class Reader {
             targetEntity = BookLent.class,
             mappedBy = "reader",
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
+            fetch = FetchType.LAZY
     )
     private List<BookLent> lents = new ArrayList<>();
 

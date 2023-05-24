@@ -20,12 +20,10 @@ public class BookCopy {
 
     @Column(name = "STATUS")
     private CopyStatus status;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "BOOK_ID")
     private Book book;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "LENT_ID")
-    private BookLent lent;
+
 
     public BookCopy(CopyStatus status, Book book) {
         this.status = status;
@@ -36,7 +34,4 @@ public class BookCopy {
         this.status = status;
     }
 
-    public void setLent(BookLent lent) {
-        this.lent = lent;
-    }
 }

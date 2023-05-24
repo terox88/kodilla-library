@@ -13,10 +13,10 @@ public interface BookRepository extends CrudRepository<Book, Integer> {
     @Override
     List<Book> findAll();
     Optional<Book> findByTitle(String title);
-    Optional<Book> findByAuthor(String author);
     @Override
     Book save(Book book);
     void deleteById(int id);
+    Optional<Book> findById(int id);
 
 
 

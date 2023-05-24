@@ -3,12 +3,13 @@ package com.kodilla.library.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import javax.persistence.*;
-@Getter
+import java.time.LocalDate;
 @AllArgsConstructor
-public class BookCopyDto {
+@Getter
+public class BookLentDtoIn {
     private int id;
-    private CopyStatus status;
-    private int bookId;
+    private int bookCopyId;
+    private int readerId;
+
 
 }

@@ -42,24 +42,32 @@ public class DbService {
         CopyStatus status = CopyStatus.AVAILABLE;
         return bookCopyRepository.findByBookAndStatus(book,status);
     }
-    public BookLent createLent(int bookCopyId, int readerId) throws CopyNotFoundException, ReaderNotFoundException {
-        BookCopy copy = bookCopyRepository.findById(bookCopyId).orElseThrow(CopyNotFoundException::new);
-        Reader reader = readerRepository.findById(readerId).orElseThrow(ReaderNotFoundException :: new);
-        BookLent bookLent = new BookLent(copy, reader);
-        copy.setLent(bookLent);
-        copy.setStatus(CopyStatus.LENT);
-        reader.getLents().add(bookLent);
-        bookCopyRepository.save(copy);
-        readerRepository.save(reader);
-        return bookLentRepository.save(bookLent);
+    public List<Reader> getAllReaders(){
+        return readerRepository.findAll();
     }
-    public void deleteLent(int lentId) throws LentNotFoundException {
-        try {
-            bookLentRepository.deleteById(lentId);
-        } catch (IllegalArgumentException e) {
-            throw new LentNotFoundException();
-        }
+    public List<Book> getaAllBooks() {
+        return bookRepository.findAll();
+    }
+    public List<BookCopy> getAllCopies() {
+        return bookCopyRepository.findAll();
+    }
+    public BookLent createLent(BookLent lent) {
+        lent.getCopy().setStatus(CopyStatus.LENT);
+        return bookLentRepository.save(lent);
+    }
+    public void deleteLent(int lentId) throws LentNotFoundException, CopyNotFoundException {
+        int copyId = bookLentRepository.findById(lentId).orElseThrow(LentNotFoundException :: new).getCopy().getId();
+        bookLentRepository.deleteById(lentId);
+        changeBookCopyStatus(copyId,CopyStatus.AVAILABLE);
 
+    }
+
+    public void deleteReader(int readerId)throws ReaderNotFoundException {
+        try {
+            readerRepository.deleteById(readerId);
+        } catch (IllegalArgumentException e) {
+            throw new ReaderNotFoundException();
+        }
     }
 
 

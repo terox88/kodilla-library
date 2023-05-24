@@ -19,10 +19,10 @@ public class BookLent {
     @GeneratedValue
     @Column(name = "ID", unique = true)
     private int id;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne
     @JoinColumn(name = "COPY_ID")
     private BookCopy copy;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "READER_ID")
     private Reader reader;
     private LocalDate lentBegin;
